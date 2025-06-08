@@ -314,7 +314,22 @@ input:checked + .slider:before {
     z-index: 100;
 }
 #username-display { font-weight: 500; color: var(--text-color); }
-#logout-btn { background: none; border: none; color: #dc3545; cursor: pointer; font-size: 18px; padding: 5px; }
+
+/* --- [修改] 登出與帳號管理按鈕樣式 --- */
+#logout-btn, .account-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logout-btn { color: #dc3545; }
+.account-btn { color: var(--text-color-light); text-decoration: none; }
+.account-btn:hover { color: var(--text-color); }
+
 /* --- [新增] 彈出式視窗 (Modal) 樣式 --- */
 .modal-backdrop {
     position: fixed;

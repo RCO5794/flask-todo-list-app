@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帳號管理 - 待辦事項</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <form id="password-change-form">
+            <h1>更改密碼</h1>
+            <div class="input-group">
+                <label for="current-password">目前的密碼</label>
+                <input type="password" id="current-password" name="current-password" required autocomplete="current-password">
+            </div>
+            <div class="input-group">
+                <label for="new-password">新密碼 (至少 4 個字元)</label>
+                <input type="password" id="new-password" name="new-password" required autocomplete="new-password">
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">確認新密碼</label>
+                <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password">
+            </div>
+            <button type="submit">確認更改</button>
+            <p id="error-message" class="error-message"></p>
+            <p id="success-message" class="error-message" style="color: green;"></p>
+        </form>
+        <p class="hint"><a href="/app">返回主應用程式</a></p>
+    </div>
+    <script src="/static/account.js"></script>
+</body>
+</html>
