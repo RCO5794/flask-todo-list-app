@@ -1,0 +1,422 @@
+/* --- CSS 變數定義 (淺色與深色模式) --- */
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg-color: #ffffff;
+    --text-color: #1c1e21;
+    --text-color-light: #606770;
+    --border-color: #ccd0d5;
+    --border-color-light: #e9ebee;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --input-bg-color: #ffffff;
+    --button-primary-bg: #1877f2;
+    --button-primary-hover-bg: #166fe5;
+    --button-secondary-bg: #6c757d;
+    --button-secondary-hover-bg: #5a6268;
+    --priority-high: #fa3e3e;
+    --priority-medium: #1877f2;
+    --priority-low: #42b72a;
+    --countdown-normal-bg: #e9ecef;
+    --countdown-normal-text: #495057;
+    --countdown-soon-bg: #fff3cd;
+    --countdown-soon-text: #856404;
+    --countdown-overdue-bg: #f8d7da;
+    --countdown-overdue-text: #721c24;
+}
+
+body.dark-mode {
+    --bg-color: #18191a;
+    --container-bg-color: #242526;
+    --text-color: #e4e6eb;
+    --text-color-light: #b0b3b8;
+    --border-color: #3e4042;
+    --border-color-light: #303132;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --input-bg-color: #3a3b3c;
+    --button-primary-bg: #2d88ff;
+    --button-primary-hover-bg: #1b74e8;
+    --priority-high: #ff6666;
+    --priority-medium: #559fff;
+    --priority-low: #50e350;
+    --countdown-normal-bg: #3a3b3c;
+    --countdown-normal-text: #b0b3b8;
+    --countdown-soon-bg: #5c4e24;
+    --countdown-soon-text: #ffe08a;
+    --countdown-overdue-bg: #5c2c31;
+    --countdown-overdue-text: #ffb3b8;
+}
+
+/* --- 通用樣式 --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    background-color: var(--container-bg-color);
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    width: 90%;
+    max-width: 700px;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+/* --- 頁首 (標題, 搜尋, 深色模式) --- */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.app-header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: var(--text-color);
+}
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.search-container {
+    position: relative;
+}
+.search-container .fa-search {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color-light);
+}
+#search-input {
+    padding: 8px 12px 8px 35px;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    font-size: 14px;
+    min-width: 200px;
+}
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: var(--button-primary-bg);
+}
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* --- 新增表單 --- */
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.form-row, .form-row-actions {
+    display: flex;
+    gap: 10px;
+}
+.form-row-actions {
+    justify-content: space-between;
+    align-items: center;
+}
+#todo-input, #todo-due-date, #todo-notes, #todo-priority, #todo-tags, #todo-form button {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: inherit;
+    box-sizing: border-box;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+}
+#todo-input { flex-grow: 2; }
+#todo-due-date { flex-grow: 1; }
+#todo-notes {
+    width: 100%;
+    resize: vertical;
+    min-height: 40px;
+    font-size: 14px;
+}
+#todo-tags { flex-grow: 1; }
+#todo-form button {
+    background-color: var(--button-primary-bg);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+}
+#todo-form button:hover { background-color: var(--button-primary-hover-bg); }
+
+/* --- 列表控制 --- */
+.list-controls {
+    display: flex; flex-wrap: wrap; justify-content: space-between;
+    align-items: center; margin-bottom: 20px; gap: 15px;
+    padding: 8px 0; border-bottom: 1px solid var(--border-color-light);
+}
+#current-filter-info { font-size: 0.9em; color: var(--text-color-light); }
+.hidden { display: none !important; }
+#clear-filter-btn {
+    background-color: var(--button-secondary-bg);
+    color: white; border: none; border-radius: 6px;
+    cursor: pointer; font-size: 0.9em; padding: 8px 12px;
+}
+#sort-options {
+    padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 5px;
+    font-size: 0.9em; background-color: var(--input-bg-color); color: var(--text-color);
+}
+
+/* --- 待辦事項列表 --- */
+#todo-list { list-style-type: none; padding: 0; margin: 0; }
+.todo-item-container {
+    padding: 12px 0px;
+    border-bottom: 1px solid var(--border-color-light);
+}
+.todo-item-container:last-child { border-bottom: none; }
+.todo-item { display: flex; align-items: flex-start; gap: 10px; }
+.priority-indicator {
+    width: 5px;
+    height: 24px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+.priority-indicator.priority-high { background-color: var(--priority-high); }
+.priority-indicator.priority-medium { background-color: var(--priority-medium); }
+.priority-indicator.priority-low { background-color: var(--priority-low); }
+
+.todo-content { flex-grow: 1; overflow: hidden; }
+.todo-main-info { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.todo-text { font-size: 16px; word-break: break-word; }
+.todo-meta-info { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; }
+.due-date-text { font-size: 0.8em; color: var(--text-color-light); }
+.tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-item {
+    background-color: rgba(0, 123, 255, 0.1);
+    color: var(--button-primary-bg);
+    padding: 3px 8px; border-radius: 12px;
+    font-size: 0.75em; font-weight: 500;
+    cursor: pointer;
+}
+.action-buttons { display: flex; align-items: center; gap: 6px; }
+.action-buttons button {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-color-light); font-size: 14px;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: inline-flex; justify-content: center; align-items: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+.action-buttons button:hover { background-color: var(--bg-color); color: var(--text-color); }
+
+/* --- 備註區塊 --- */
+.notes-section {
+    font-size: 0.9em;
+    color: var(--text-color-light);
+    background-color: var(--bg-color);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    white-space: pre-wrap; /* 保留換行 */
+    word-break: break-word;
+}
+
+/* --- 子任務 --- */
+.subtask-list {
+    list-style-type: none;
+    padding-left: 25px;
+    margin-top: 10px;
+    border-left: 2px solid var(--border-color);
+}
+
+/* --- 完成狀態 --- */
+.completed .todo-text { text-decoration: line-through; color: var(--text-color-light); }
+.completed .priority-indicator { opacity: 0.4; }
+.completed .tag-item, .completed .countdown-timer {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* --- 倒數計時器 --- */
+.countdown-timer {
+    font-size: 0.8em;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--countdown-normal-bg);
+    color: var(--countdown-normal-text);
+}
+.countdown-timer.due-soon { background-color: var(--countdown-soon-bg); color: var(--countdown-soon-text); }
+.countdown-timer.overdue { background-color: var(--countdown-overdue-bg); color: var(--countdown-overdue-text); font-weight: bold; }
+
+/* --- 使用者資訊 (右下角) --- */
+#user-info {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    background-color: var(--container-bg-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    z-index: 100;
+}
+#username-display { font-weight: 500; color: var(--text-color); }
+#logout-btn { background: none; border: none; color: #dc3545; cursor: pointer; font-size: 18px; padding: 5px; }
+/* --- [新增] 彈出式視窗 (Modal) 樣式 --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--container-bg-color);
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 15px;
+}
+
+#edit-form .form-group {
+    margin-bottom: 15px;
+}
+
+#edit-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-color-light);
+}
+
+#edit-form input[type="text"],
+#edit-form input[type="datetime-local"],
+#edit-form textarea,
+#edit-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+}
+
+#edit-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+#edit-form .form-row {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+#edit-form .form-row .form-group {
+    flex-grow: 1;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.modal-actions button[type="submit"] {
+    background-color: var(--button-primary-bg);
+    color: white;
+}
+.modal-actions button[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg);
+}
+
+.modal-actions .btn-secondary {
+    background-color: var(--button-secondary-bg);
+    color: white;
+}
+.modal-actions .btn-secondary:hover {
+    background-color: var(--button-secondary-hover-bg);
+}

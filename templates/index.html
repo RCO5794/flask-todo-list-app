@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的待辦事項</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1>我的待辦事項</h1>
+            <div class="header-controls">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="search" id="search-input" placeholder="搜尋標題、備註、標籤...">
+                </div>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-checkbox">
+                        <input type="checkbox" id="theme-checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <form id="todo-form">
+            <div class="form-row">
+                <input type="text" id="todo-input" placeholder="新增一個待辦事項..." autocomplete="off" required>
+                <input type="datetime-local" id="todo-due-date">
+            </div>
+            <div class="form-row">
+                <textarea id="todo-notes" placeholder="詳細備註..."></textarea>
+            </div>
+            <div class="form-row-actions">
+                <select id="todo-priority">
+                    <option value="medium">一般</option>
+                    <option value="high">高</option>
+                    <option value="low">低</option>
+                </select>
+                <input type="text" id="todo-tags" placeholder="標籤 (用逗號分隔)">
+                <button type="submit">
+                    <i class="fas fa-plus"></i> 新增
+                </button>
+            </div>
+        </form>
+
+        <div class="list-controls">
+            <div id="filter-controls">
+                <span id="current-filter-info"></span>
+                <button id="clear-filter-btn" class="hidden">
+                    <i class="fas fa-times-circle"></i> 清除篩選
+                </button>
+            </div>
+            <div id="sort-controls">
+                <label for="sort-options">排序方式：</label>
+                <select id="sort-options">
+                    <option value="default">預設 (最新)</option>
+                    <option value="dueDateAsc">截止日期 (由近到遠)</option>
+                    <option value="dueDateDesc">截止日期 (由遠到近)</option>
+                    <option value="priority">優先順序 (高→低)</option>
+                </select>
+            </div>
+        </div>
+
+        <ul id="todo-list">
+            </ul>
+    </div>
+
+    <div id="user-info">
+        <span id="username-display"></span>
+        <button id="logout-btn" title="登出">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
+    </div>
+    <div id="edit-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content">
+            <h2>編輯待辦事項</h2>
+            <form id="edit-form" novalidate>
+                <input type="hidden" id="edit-todo-id">
+
+                <div class="form-group">
+                    <label for="edit-todo-text">內容</label>
+                    <input type="text" id="edit-todo-text" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-todo-due-date">截止日期</label>
+                    <input type="datetime-local" id="edit-todo-due-date">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-todo-notes">備註</label>
+                    <textarea id="edit-todo-notes"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-todo-priority">優先順序</label>
+                        <select id="edit-todo-priority">
+                            <option value="high">高</option>
+                            <option value="medium">一般</option>
+                            <option value="low">低</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-todo-tags">標籤 (用逗號分隔)</label>
+                        <input type="text" id="edit-todo-tags">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancel-edit-btn" class="btn-secondary">取消</button>
+                    <button type="submit">儲存變更</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
+    <script src="/static/script.js"></script>
+</body>
+</html>

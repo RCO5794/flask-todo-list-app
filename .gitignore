@@ -1,0 +1,9 @@
+# 專案資料庫
+todos.db
+
+# Python 快取
+__pycache__/
+*.pyc
+
+# 作業系統檔案
+.DS_Store

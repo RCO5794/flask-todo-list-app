@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入 - 待辦事項</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <form id="login-form">
+            <h1>登入</h1>
+            <div class="input-group">
+                <label for="username">帳號</label>
+                <input type="text" id="username" name="username" required autocomplete="username">
+            </div>
+            <div class="input-group">
+                <label for="password">密碼</label>
+                <input type="password" id="password" name="password" required autocomplete="current-password">
+            </div>
+            <button type="submit">登入</button>
+            <p id="error-message" class="error-message"></p>
+        </form>
+        <p class="hint">還沒有帳號嗎？ <a href="/register">點此註冊</a></p>
+        <p class="hint">提示：使用測試帳號 andy / 1234</p>
+        </div>
+    <script src="/static/login.js"></script>
+</body>
+</html>
